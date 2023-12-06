@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~animate.css/animate.min.css";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background: linear-gradient(to right, #6d6b6b, #6C757D);
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}

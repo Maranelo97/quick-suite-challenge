@@ -1,0 +1,51 @@
+<div class="container">
+  <div [ngClass]="{'glass-container': true, 'animate__animated animate__fadeIn': true, 'marked': isWatchlistRoute()}">
+    <div class="title-box">
+      <h4 class="title">My Watchlist</h4>
+    </div>
+  </div>
+  <div class="glass-container__2 animate__animated animate__fadeIn">
+    <div class="title-box">
+      <h4 class="title" [routerLink]="['/']">Go Home</h4>
+    </div>
+  </div>
+</div>
+
+
+<div class="glass-container__3 animate__animated animate__fadeIn" *ngIf="watchlist.length === 0">
+  <span>You dont have movies in your watchlist!</span>
+</div>
+
+<div class="container__cards">
+  <div *ngFor="let movie of watchlist" class="animate__animated animate__fadeIn">
+
+    <mat-card class="custom-card">
+      <mat-card-header class="header__card">
+        <div>
+          <button color="accent" mat-fab [style.color]="isInWatchlist(movie) ? '#fff' : '#fff'"
+            *ngIf="isInWatchlist(movie)" (click)="removeFromWatchlist(movie)">
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+        </div>
+        <span class="chip-movie animate__animated animate__fadeIn">On my watchlist</span>
+
+        <mat-card-title class="mat-card-title">{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle class="genre-text">{{ movie.genre.join(',') }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <img mat-card-image [src]="movie.image" class="custom-image" alt="Banner Movie">
+      <mat-card-content class="body__card">
+        <p>
+          {{ movie.description }}
+        </p>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions class="buttons_cards">
+        <button mat-raised-button color="accent" [routerLink]="['/movie', movie.title]">
+          <mat-icon>more_vert</mat-icon>Details</button>
+        <button mat-raised-button color="accent"><mat-icon>share</mat-icon>Share</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>

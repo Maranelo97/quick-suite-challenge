@@ -1,0 +1,48 @@
+<div class="container animate__animated animate__fadeIn">
+  <div>
+    <div class="poster">
+      <img mat-card-image [src]="movie.image" class="custom-image" alt="Banner Movie">
+      <button class="glass-container" *ngIf="!isInWatchlist(movie)" (click)="addToWatchlist(movie)">
+        Add to Watchlist
+      </button>
+      <button class="glass-container" *ngIf="isInWatchlist(movie)" disabled>
+        Already in your Watchlist
+      </button>
+    </div>
+  </div>
+  <div class="movie-data">
+    <div style="margin-left: 3%; margin-top: 3%;">
+      <h5 class="title-details">Details Film</h5>
+      <p><span class="details-font">Title: </span> <span style="font-weight: 600;">{{ movie.title }}</span></p>
+      <p><span class="details-font">Description: </span> <span style="font-weight: 600;">{{ movie.description }}</span>
+      </p>
+      <p><span class="details-font">Rating: </span> <span style="font-weight: 600;">{{ movie.rating }} / 10</span></p>
+      <p><span class="details-font">Genre: </span> <span style="font-weight: 600;">{{ movie.genre }}.</span></p>
+      <p><span class="details-font">Release Date: </span> <span style="font-weight: 600;">{{ movie.releaseDate
+          }}.</span></p>
+
+      <div class="trailer-box">
+        <iframe width="560" height="315" *ngIf="movie.title === 'Tenet'" src="https://www.youtube.com/embed/LdOM0x0XDMo"
+          frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" *ngIf="movie.title === 'Spider-Man: Into the Spider-Verse'"
+          src="https://www.youtube.com/embed/tg52up16eq0" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" *ngIf="movie.title === 'Knives Out'"
+          src="https://www.youtube.com/embed/qGqiHJTsRkQ" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" *ngIf="movie.title === 'Guardians of the Galaxy'"
+          src="https://www.youtube.com/embed/d96cjJhvlMA" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" *ngIf="movie.title === 'Avengers: Age of Ultron'"
+          src="https://www.youtube.com/embed/tmeOjFno6Do" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="button-wrapper">
+      <div class="button-home" [routerLink]="['/']">
+        <span class="text-glass">Go to Home Page</span>
+      </div>
+      <div class="button-home" [routerLink]="['/myWatchlist']">
+        <span class="text-glass">Go to Watchlist</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+</div>

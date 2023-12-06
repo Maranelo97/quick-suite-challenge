@@ -1,0 +1,51 @@
+<div class="orders animate__animated animate__fadeIn">
+<mat-form-field class="form-field" color="accent" appearance="fill">
+  <mat-label>Search by (Genre, Title, Etc.)</mat-label>
+  <input matInput type="text" [(ngModel)]="searchTerm">
+  <ng-container *ngIf="searchTerm">
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </ng-container>
+</mat-form-field>
+<button class="my-profile" mat-raised-button color="accent" [routerLink]="['/myWatchlist']">My Watchlist</button>
+<div style="display: flex; gap: 2px; margin-right: 3%;">
+  <button mat-stroked-button color="accent" (click)="sortMovies('title')">Sort by Title</button>
+  <button mat-stroked-button color="accent" (click)="sortMovies('releaseDate')">Sort by Release Date</button>
+</div>
+
+</div>
+<mat-divider></mat-divider>
+
+<div class="container__cards">
+
+  <div *ngFor="let movie of filterMovies()" class="animate__animated animate__fadeIn">
+    <mat-card class="custom-card">
+      <mat-card-header class="header__card">
+        <div>
+          <button color="accent" [style.color]="isInWatchlist(movie) ? '#ccc' : '#fff'" mat-fab
+            (click)="addToWatchlist(movie)" [disabled]="isInWatchlist(movie)">
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+        </div>
+        <span class="chip-movie animate__animated animate__fadeIn" *ngIf="isInWatchlist(movie)">On my watchlist</span>
+
+        <mat-card-title class="mat-card-title">{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle class="genre-text">{{ movie.genre.join(',') }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <img mat-card-image [src]="movie.image" class="custom-image" alt="Photo of a Shiba Inu">
+      <mat-card-content class="body__card">
+        <p>
+          {{ movie.description }}
+        </p>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions class="buttons_cards">
+        <button mat-raised-button color="accent" [routerLink]="['/movie', movie.title]">
+          <mat-icon>more_vert</mat-icon>Details</button>
+        <button mat-raised-button color="accent"><mat-icon>share</mat-icon>Share</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
